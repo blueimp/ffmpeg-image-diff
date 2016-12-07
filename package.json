@@ -1,0 +1,36 @@
+{
+  "name": "ffmpeg-image-diff",
+  "version": "0.0.0",
+  "title": "FFmpeg Image Diff",
+  "description": "An image diffing library using FFmpeg. Creates an image showing perceptual differences and returns SSIM data.",
+  "keywords": [
+    "ffmpeg",
+    "image",
+    "diff",
+    "ssim"
+  ],
+  "homepage": "https://github.com/blueimp/node-ffmpeg-image-diff",
+  "author": {
+    "name": "Sebastian Tschan",
+    "url": "https://blueimp.net"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/blueimp/node-ffmpeg-image-diff.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "devDependencies": {
+    "standard": "8.6.0"
+  },
+  "scripts": {
+    "lint": "standard *.js test/*.js",
+    "unit": "./test/run.js",
+    "test": "npm run lint && npm run unit",
+    "preversion": "npm test",
+    "postversion": "git push --tags origin HEAD && npm publish"
+  },
+  "main": "index.js"
+}

@@ -20,6 +20,7 @@ imgDiff(
   referenceImage,     // e.g. 'test/lenna.png'
   comparisonImage     // e.g. 'test/lenna-edit.png'
 ).then((ssim) => {
+  // Sample output: { R: 0.990149, G: 0.991289, B: 0.990579, All: 0.990672 }
   console.log(ssim)
 }).catch((error) => {
   console.error(error)
@@ -42,6 +43,7 @@ imgDiff(
     color: 'magenta'  // magenta, yellow, cyan, red green, blue or ''
   }
 ).then((ssim) => {
+  // Sample output: { R: 0.990149, G: 0.991289, B: 0.990579, All: 0.990672 }
   console.log(ssim)
 }).catch((error) => {
   console.error(error)

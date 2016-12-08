@@ -1,7 +1,13 @@
 # FFmpeg Image Diff
-An image diffing library using [FFmpeg](https://www.ffmpeg.org/).  
+A [NodeJS](https://nodejs.org/) image diffing library using
+[FFmpeg](https://www.ffmpeg.org/).  
 Creates an image showing perceptual differences and returns
 [SSIM](https://en.wikipedia.org/wiki/Structural_similarity) data.
+
+## Requirements
+This is a thin wrapper around [FFmpeg](https://www.ffmpeg.org/) and has no other
+dependencies.  
+Tested with FFmpeg versions 3.0 (Linux) and 3.2 (OSX).
 
 ## Install
 

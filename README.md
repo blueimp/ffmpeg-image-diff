@@ -33,7 +33,7 @@ const imgDiff = require('ffmpeg-image-diff')
 imgDiff(
   referenceImage,     // e.g. 'test/lenna.png'
   comparisonImage,    // e.g. 'test/lenna-edit.png'
-  outputImage,        // e.g. 'test/out.png'
+  outputImage,        // e.g. 'test/out.png', overwrites an existing file
   {
     ssim: true,       // true or false
     similarity: 0.01, // 1.0 - 0.01

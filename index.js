@@ -64,7 +64,7 @@ module.exports = function (refImg, cmpImg, outImg, opts) {
     similarity: 0.01, // 1.0 - 0.01
     blend: 1.0,       // 1.0 - 0.0
     opacity: 0.1,     // 1.0 - 0.0
-    color: 'pink'     // pink, yellow, green, blue, '', or FFmpeg colorbalance
+    color: 'magenta'  // magenta, yellow, cyan, red green, blue or ''
   }
   if (opts) Object.assign(options, opts)
   const ssim = options.ssim
@@ -74,11 +74,17 @@ module.exports = function (refImg, cmpImg, outImg, opts) {
     `:similarity=${options.similarity}:blend=${options.blend}`
   let colorbalance = 'colorbalance='
   switch (options.color) {
-    case 'pink':
+    case 'magenta':
       colorbalance += `rs=1:gs=-1:bs=1:rm=1:gm=-1:bm=1:rh=1:gh=-1:bh=1`
       break
     case 'yellow':
       colorbalance += `rs=1:gs=1:bs=-1:rm=1:gm=1:bm=-1:rh=1:gh=1:bh=-1`
+      break
+    case 'cyan':
+      colorbalance += `rs=-1:gs=1:bs=1:rm=-1:gm=1:bm=1:rh=-1:gh=1:bh=1`
+      break
+    case 'red':
+      colorbalance += `rs=1:gs=-1:bs=-1:rm=1:gm=-1:bm=-1:rh=1:gh=-1:bh=-1`
       break
     case 'green':
       colorbalance += `rs=-1:gs=1:bs=-1:rm=-1:gm=1:bm=-1:rh=-1:gh=1:bh=-1`

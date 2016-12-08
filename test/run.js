@@ -29,8 +29,10 @@ function test (outImg, options) {
 }
 
 test() // SSIM only
-  .then(() => test('out.png')) // Default options (color: 'pink')
+  .then(() => test('out.png')) // Default options (color: 'magenta')
   .then(() => test('out-color-yellow.png', {color: 'yellow'}))
+  .then(() => test('out-color-cyan.png', {color: 'cyan'}))
+  .then(() => test('out-color-red.png', {color: 'red'}))
   .then(() => test('out-color-green.png', {color: 'green'}))
   .then(() => test('out-color-blue.png', {color: 'blue'}))
   .then(() => test('out-color-empty.png', {color: ''}))

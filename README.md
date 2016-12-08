@@ -39,7 +39,7 @@ imgDiff(
     similarity: 0.01, // 1.0 - 0.01
     blend: 1.0,       // 1.0 - 0.0
     opacity: 0.1,     // 1.0 - 0.0
-    color: 'pink'     // pink, yellow, green, blue or ''
+    color: 'magenta'  // magenta, yellow, cyan, red green, blue or ''
   }
 ).then((ssim) => {
   console.log(ssim)
@@ -77,8 +77,8 @@ Higher values result in a more opaque background image.
 ### color
 The color balance of the differential pixels.  
 An empty string displays the default differential pixels.  
-*Set:* `['pink', 'yellow', 'green', 'blue', '']`  
-*Default:* `'pink'`
+*Set:* `['magenta', 'yellow', 'cyan', 'red', 'green', 'blue', '']`  
+*Default:* `'magenta'`
 
 ## Samples
 

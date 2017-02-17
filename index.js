@@ -16,7 +16,7 @@
  * https://blueimp.net
  *
  * Licensed under the MIT license:
- * https://www.opensource.org/licenses/MIT
+ * https://opensource.org/licenses/MIT
  */
 
 function ffmpegImageDiff (refImg, cmpImg, args) {

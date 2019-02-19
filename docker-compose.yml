@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+  test:
+    build: .
+    init: true
+    command: index.test.js
+    read_only: true
+    volumes:
+      - .:/opt:ro
+      - ./output:/opt/output

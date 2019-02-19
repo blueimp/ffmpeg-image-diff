@@ -6,8 +6,7 @@ Creates an image showing perceptual differences and returns
 
 ## Requirements
 This is a thin wrapper around [FFmpeg](https://www.ffmpeg.org/) and has no other
-dependencies.  
-Tested with FFmpeg versions 3.0 (Linux) and 3.2 (OSX).
+dependencies.
 
 ## Install
 
@@ -91,13 +90,13 @@ An empty string displays the default differential pixels.
 ## Samples
 
 ### Reference image
-![Lenna](test/lenna.png)
+![Lenna](samples/lenna.png)
 
 ### Comparison image
-![Lenna Edit](test/lenna-edit.png)
+![Lenna Edit](samples/lenna-edit.png)
 
 ### Output image
-![Lenna Diff](test/lenna-diff.png)
+![Lenna Diff](samples/lenna-diff.png)
 
 ## License
 Released under the [MIT license](https://opensource.org/licenses/MIT).

@@ -1,5 +1,3 @@
-'use strict'
-
 /*
  * An image diffing library using FFmpeg.
  * Creates an image showing perceptual differences and returns SSIM data.
@@ -17,8 +15,26 @@
  * https://opensource.org/licenses/MIT
  */
 
+// @ts-check
+'use strict'
+
 const execFile = require('util').promisify(require('child_process').execFile)
 
+/**
+ * @typedef {Object} Result
+ * @property {number} [R] Red color differences
+ * @property {number} [G] Green color differences
+ * @property {number} [B] blue color differences
+ * @property {number} [All] All color differences
+ */
+
+/**
+ * Compares two images, creates diff and returns differences as SSIM stats.
+ * @param {string} refImg File path to reference image
+ * @param {string} cmpImg File path to comparison image
+ * @param {Array} args ffmpeg arguments
+ * @returns {Promise<Result>}
+ */
 function ffmpeg (refImg, cmpImg, args) {
   return execFile(
     'ffmpeg',
@@ -38,7 +54,24 @@ function ffmpeg (refImg, cmpImg, args) {
   })
 }
 
-function imageDiff (refImg, cmpImg, outImg, opts) {
+/**
+ * @typedef {Object} Options Screen recording options
+ * @property {boolean} [ssim=true] Set to `false` to disable SSIM calculation
+ * @property {number} [similarity=0.01] Threshold to identify image differences
+ * @property {number} [blend=1.0] Blend percentage for the differential pixels
+ * @property {number} [opacity=0.1] Opacity of the reference image as backdrop
+ * @property {string} [color=magenta] Color balance of the differential pixels
+ */
+
+/**
+ * Compares two images, creates diff img and returns differences as SSIM stats.
+ * @param {string} refImg File path to reference image
+ * @param {string} cmpImg File path to comparison image
+ * @param {string} [outImg] File path to output image
+ * @param {Options} [options] Image diffing options
+ * @returns {Promise<Result>}
+ */
+function imageDiff (refImg, cmpImg, outImg, options) {
   if (!outImg) {
     // Resolve with the SSIM stats without creating a differential image:
     return ffmpeg(refImg, cmpImg, [
@@ -49,20 +82,22 @@ function imageDiff (refImg, cmpImg, outImg, opts) {
       '-'
     ])
   }
-  const options = {
-    ssim: true, // true or false
-    similarity: 0.01, // 1.0 - 0.01
-    blend: 1.0, // 1.0 - 0.0
-    opacity: 0.1, // 1.0 - 0.0
-    color: 'magenta' // magenta, yellow, cyan, red green, blue or ''
-  }
-  if (opts) Object.assign(options, opts)
-  const ssim = options.ssim ? 'ssim=stats_file=-[ssim];[ssim][1]' : ''
+  const opts = Object.assign(
+    {
+      ssim: true, // true or false
+      similarity: 0.01, // 1.0 - 0.01
+      blend: 1.0, // 1.0 - 0.0
+      opacity: 0.1, // 1.0 - 0.0
+      color: 'magenta' // magenta, yellow, cyan, red green, blue or ''
+    },
+    options
+  )
+  const ssim = opts.ssim ? 'ssim=stats_file=-[ssim];[ssim][1]' : ''
   const colorkey =
     'format=rgba,colorkey=white' +
-    `:similarity=${options.similarity}:blend=${options.blend}`
+    `:similarity=${opts.similarity}:blend=${opts.blend}`
   let colorbalance = 'colorbalance='
-  switch (options.color) {
+  switch (opts.color) {
     case 'magenta':
       colorbalance += `rs=1:gs=-1:bs=1:rm=1:gm=-1:bm=1:rh=1:gh=-1:bh=1`
       break
@@ -82,15 +117,15 @@ function imageDiff (refImg, cmpImg, outImg, opts) {
       colorbalance += `rs=-1:gs=-1:bs=1:rm=-1:gm=-1:bm=1:rh=-1:gh=-1:bh=1`
       break
     default:
-      colorbalance += options.color
+      colorbalance += opts.color
   }
   // Create a differential image with transparent background.
   // The differences are highlighted with the given colorbalance:
   const diff = `blend=all_mode=phoenix,${colorkey},${colorbalance}[diff];`
   // Use the reference file as background with the given opacity:
   const bg =
-    options.opacity < 1
-      ? `format=rgba,colorchannelmixer=aa=${options.opacity}[bg];[bg]`
+    opts.opacity < 1
+      ? `format=rgba,colorchannelmixer=aa=${opts.opacity}[bg];[bg]`
       : ''
   // Overlay the background with the diff:
   const overlay = `[0]${bg}[diff]overlay=format=rgb`

@@ -4,6 +4,23 @@ A [NodeJS](https://nodejs.org/) image diffing library using
 Creates an image showing perceptual differences and returns
 [SSIM](https://en.wikipedia.org/wiki/Structural_similarity) data.
 
+- [Requirements](#requirements)
+- [Install](#install)
+- [Usage](#usage)
+- [Options](#options)
+  * [ssim](#ssim)
+  * [similarity](#similarity)
+  * [blend](#blend)
+  * [opacity](#opacity)
+  * [color](#color)
+- [Samples](#samples)
+  * [Reference image](#reference-image)
+  * [Comparison image](#comparison-image)
+  * [Output image](#output-image)
+- [Testing](#testing)
+- [License](#license)
+- [Author](#author)
+
 ## Requirements
 This is a thin wrapper around [FFmpeg](https://www.ffmpeg.org/) and has no other
 dependencies.

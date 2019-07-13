@@ -98,6 +98,17 @@ An empty string displays the default differential pixels.
 ### Output image
 ![Lenna Diff](samples/lenna-diff.png)
 
+## Testing
+1. Start [Docker](https://docs.docker.com/).
+3. Install development dependencies:
+   ```sh
+   npm install
+   ```
+4. Run the tests:
+   ```sh
+   npm test
+   ```
+
 ## License
 Released under the [MIT license](https://opensource.org/licenses/MIT).
 

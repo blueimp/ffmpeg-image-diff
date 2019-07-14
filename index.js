@@ -15,7 +15,6 @@
  * https://opensource.org/licenses/MIT
  */
 
-// @ts-check
 'use strict'
 
 const execFile = require('util').promisify(require('child_process').execFile)

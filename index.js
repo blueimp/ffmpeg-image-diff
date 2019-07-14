@@ -21,7 +21,7 @@
 const execFile = require('util').promisify(require('child_process').execFile)
 
 /**
- * @typedef {Object} Result
+ * @typedef {object} Result
  * @property {number} [R] Red color differences
  * @property {number} [G] Green color differences
  * @property {number} [B] blue color differences
@@ -30,23 +30,24 @@ const execFile = require('util').promisify(require('child_process').execFile)
 
 /**
  * Compares two images, creates diff and returns differences as SSIM stats.
+ *
  * @param {string} refImg File path to reference image
  * @param {string} cmpImg File path to comparison image
  * @param {Array} args ffmpeg arguments
- * @returns {Promise<Result>}
+ * @returns {Promise<Result>} Resolves with the image comparison result
  */
-function ffmpeg (refImg, cmpImg, args) {
+function ffmpeg(refImg, cmpImg, args) {
   return execFile(
     'ffmpeg',
     ['-loglevel', 'error', '-i', refImg, '-i', cmpImg].concat(args)
-  ).then(function (result) {
+  ).then(function(result) {
     // SSIM log output has the following format:
     // n:1 R:x.xxxxxx G:x.xxxxxx B:x.xxxxxx All:x.xxxxxx (xx.xxxxxx)
     // We only keep the R, G, B and All values and turn them into an object:
     return result.stdout
       .split(' ')
       .slice(1, -1)
-      .reduce(function (obj, val) {
+      .reduce(function(obj, val) {
         const tupel = val.split(':')
         obj[tupel[0]] = parseFloat(tupel[1])
         return obj
@@ -55,7 +56,7 @@ function ffmpeg (refImg, cmpImg, args) {
 }
 
 /**
- * @typedef {Object} Options Screen recording options
+ * @typedef {object} Options Screen recording options
  * @property {boolean} [ssim=true] Set to `false` to disable SSIM calculation
  * @property {number} [similarity=0.01] Threshold to identify image differences
  * @property {number} [blend=1.0] Blend percentage for the differential pixels
@@ -65,13 +66,14 @@ function ffmpeg (refImg, cmpImg, args) {
 
 /**
  * Compares two images, creates diff img and returns differences as SSIM stats.
+ *
  * @param {string} refImg File path to reference image
  * @param {string} cmpImg File path to comparison image
  * @param {string} [outImg] File path to output image
  * @param {Options} [options] Image diffing options
- * @returns {Promise<Result>}
+ * @returns {Promise<Result>} Resolves with the image comparison result
  */
-function imageDiff (refImg, cmpImg, outImg, options) {
+function imageDiff(refImg, cmpImg, outImg, options) {
   if (!outImg) {
     // Resolve with the SSIM stats without creating a differential image:
     return ffmpeg(refImg, cmpImg, [

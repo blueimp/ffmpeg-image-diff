@@ -9,10 +9,10 @@ const imgDiff = require('.')
 const referenceImage = 'samples/lenna.png'
 const comparisonImage = 'samples/lenna-edit.png'
 
-describe('image diff', function () {
+describe('image diff', function() {
   this.slow(300)
 
-  it('no output image', async function () {
+  it('no output image', async function() {
     this.slow(150)
     const result = await imgDiff(referenceImage, comparisonImage)
     assert.strictEqual(typeof result.R, 'number')
@@ -21,7 +21,7 @@ describe('image diff', function () {
     assert.strictEqual(typeof result.All, 'number')
   })
 
-  it('default', async function () {
+  it('default', async function() {
     const result = await imgDiff(
       referenceImage,
       comparisonImage,
@@ -33,7 +33,7 @@ describe('image diff', function () {
     assert.strictEqual(typeof result.All, 'number')
   })
 
-  it('color yellow', async function () {
+  it('color yellow', async function() {
     const result = await imgDiff(
       referenceImage,
       comparisonImage,
@@ -46,7 +46,7 @@ describe('image diff', function () {
     assert.strictEqual(typeof result.All, 'number')
   })
 
-  it('color cyan', async function () {
+  it('color cyan', async function() {
     const result = await imgDiff(
       referenceImage,
       comparisonImage,
@@ -59,7 +59,7 @@ describe('image diff', function () {
     assert.strictEqual(typeof result.All, 'number')
   })
 
-  it('color red', async function () {
+  it('color red', async function() {
     const result = await imgDiff(
       referenceImage,
       comparisonImage,
@@ -72,7 +72,7 @@ describe('image diff', function () {
     assert.strictEqual(typeof result.All, 'number')
   })
 
-  it('color green', async function () {
+  it('color green', async function() {
     const result = await imgDiff(
       referenceImage,
       comparisonImage,
@@ -85,7 +85,7 @@ describe('image diff', function () {
     assert.strictEqual(typeof result.All, 'number')
   })
 
-  it('color blue', async function () {
+  it('color blue', async function() {
     const result = await imgDiff(
       referenceImage,
       comparisonImage,
@@ -98,7 +98,7 @@ describe('image diff', function () {
     assert.strictEqual(typeof result.All, 'number')
   })
 
-  it('color empty', async function () {
+  it('color empty', async function() {
     const result = await imgDiff(
       referenceImage,
       comparisonImage,
@@ -111,7 +111,7 @@ describe('image diff', function () {
     assert.strictEqual(typeof result.All, 'number')
   })
 
-  it('similarity 1', async function () {
+  it('similarity 1', async function() {
     const result = await imgDiff(
       referenceImage,
       comparisonImage,
@@ -124,7 +124,7 @@ describe('image diff', function () {
     assert.strictEqual(typeof result.All, 'number')
   })
 
-  it('blend 0', async function () {
+  it('blend 0', async function() {
     const result = await imgDiff(
       referenceImage,
       comparisonImage,
@@ -137,7 +137,7 @@ describe('image diff', function () {
     assert.strictEqual(typeof result.All, 'number')
   })
 
-  it('opacity 0', async function () {
+  it('opacity 0', async function() {
     const result = await imgDiff(
       referenceImage,
       comparisonImage,
@@ -150,7 +150,7 @@ describe('image diff', function () {
     assert.strictEqual(typeof result.All, 'number')
   })
 
-  it('opacity 1', async function () {
+  it('opacity 1', async function() {
     const result = await imgDiff(
       referenceImage,
       comparisonImage,
@@ -163,7 +163,7 @@ describe('image diff', function () {
     assert.strictEqual(typeof result.All, 'number')
   })
 
-  it('ssim false', async function () {
+  it('ssim false', async function() {
     const result = await imgDiff(
       referenceImage,
       comparisonImage,

@@ -1,0 +1,31 @@
+name: Test
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 8.x
+      - name: chmod
+        run: chmod -R 777 output
+      - name: docker-compose build
+        run: docker-compose build
+      - name: npm install
+        run: npm install
+        env:
+          CI: true
+      - name: npm test
+        run: npm test
+        env:
+          CI: true
+      - name: Upload output
+        if: always()
+        uses: actions/upload-artifact@master
+        with:
+          name: output
+          path: output

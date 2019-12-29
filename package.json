@@ -9,14 +9,14 @@
     "diff",
     "ssim"
   ],
-  "homepage": "https://github.com/blueimp/node-ffmpeg-image-diff",
+  "homepage": "https://github.com/blueimp/ffmpeg-image-diff",
   "author": {
     "name": "Sebastian Tschan",
     "url": "https://blueimp.net"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/blueimp/node-ffmpeg-image-diff.git"
+    "url": "git://github.com/blueimp/ffmpeg-image-diff.git"
   },
   "license": "MIT",
   "engines": {

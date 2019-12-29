@@ -17,7 +17,14 @@
 
 'use strict'
 
-const execFile = require('util').promisify(require('child_process').execFile)
+/**
+ * @typedef {object} Options Image diffing options
+ * @property {boolean} [ssim=true] Set to `false` to disable SSIM calculation
+ * @property {number} [similarity=0.01] Threshold to identify image differences
+ * @property {number} [blend=1.0] Blend percentage for the differential pixels
+ * @property {number} [opacity=0.1] Opacity of the reference image as backdrop
+ * @property {string} [color=magenta] Color balance of the differential pixels
+ */
 
 /**
  * @typedef {object} Result
@@ -26,6 +33,8 @@ const execFile = require('util').promisify(require('child_process').execFile)
  * @property {number} [B] blue color differences
  * @property {number} [All] All color differences
  */
+
+const execFile = require('util').promisify(require('child_process').execFile)
 
 /**
  * Compares two images, creates diff and returns differences as SSIM stats.
@@ -53,15 +62,6 @@ function ffmpeg(refImg, cmpImg, args) {
       }, {})
   })
 }
-
-/**
- * @typedef {object} Options Screen recording options
- * @property {boolean} [ssim=true] Set to `false` to disable SSIM calculation
- * @property {number} [similarity=0.01] Threshold to identify image differences
- * @property {number} [blend=1.0] Blend percentage for the differential pixels
- * @property {number} [opacity=0.1] Opacity of the reference image as backdrop
- * @property {string} [color=magenta] Color balance of the differential pixels
- */
 
 /**
  * Compares two images, creates diff img and returns differences as SSIM stats.

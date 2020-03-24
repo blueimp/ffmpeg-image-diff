@@ -1,4 +1,4 @@
-FROM alpine:3.10
+FROM alpine:3.11
 
 RUN apk --no-cache add \
     nodejs \
@@ -6,7 +6,7 @@ RUN apk --no-cache add \
     ffmpeg \
   && npm install -g \
     npm@latest \
-    mocha@6 \
+    mocha@7 \
   # Clean up obsolete files:
   && rm -rf \
     /tmp/* \

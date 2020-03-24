@@ -48,14 +48,14 @@ function ffmpeg(refImg, cmpImg, args) {
   return execFile(
     'ffmpeg',
     ['-loglevel', 'error', '-i', refImg, '-i', cmpImg].concat(args)
-  ).then(function(result) {
+  ).then(function (result) {
     // SSIM log output has the following format:
     // n:1 R:x.xxxxxx G:x.xxxxxx B:x.xxxxxx All:x.xxxxxx (xx.xxxxxx)
     // We only keep the R, G, B and All values and turn them into an object:
     return result.stdout
       .split(' ')
       .slice(1, -1)
-      .reduce(function(obj, val) {
+      .reduce(function (obj, val) {
         const tupel = val.split(':')
         obj[tupel[0]] = parseFloat(tupel[1])
         return obj

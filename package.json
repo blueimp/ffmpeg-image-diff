@@ -1,6 +1,6 @@
 {
   "name": "ffmpeg-image-diff",
-  "version": "1.10.0",
+  "version": "1.11.0",
   "title": "FFmpeg Image Diff",
   "description": "An image diffing library using FFmpeg. Creates an image showing perceptual differences and returns SSIM data.",
   "keywords": [

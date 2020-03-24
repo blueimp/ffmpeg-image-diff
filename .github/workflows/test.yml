@@ -10,7 +10,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: 8.x
+          node-version: 12.x
       - name: chmod
         run: chmod -R 777 output
       - name: docker-compose build

@@ -2,6 +2,7 @@
 
 /* global describe, it */
 
+/** @type {object} */
 const assert = require('assert')
 const imgDiff = require('.')
 

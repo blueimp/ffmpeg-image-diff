@@ -1,16 +1,16 @@
-FROM alpine:3.11
+FROM alpine:3.12
 
 RUN apk --no-cache add \
-    nodejs \
-    npm \
-    ffmpeg \
+  nodejs \
+  npm \
+  ffmpeg \
   && npm install -g \
-    npm@latest \
-    mocha@7 \
+  npm@latest \
+  mocha@8 \
   # Clean up obsolete files:
   && rm -rf \
-    /tmp/* \
-    /root/.npm
+  /tmp/* \
+  /root/.npm
 
 # Avoid permission issues with host mounts by assigning a user/group with
 # uid/gid 1000 (usually the ID of the first user account on GNU/Linux):

@@ -6,5 +6,5 @@ services:
     command: index.test.js
     read_only: true
     volumes:
-      - .:/opt:ro
-      - ./output:/opt/output
+      - .:/app:ro
+      - ./output:/app/output
